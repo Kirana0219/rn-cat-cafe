@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import {StyleSheet, Text, View } from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import MenuItem from './MenuItem';
 import OrderSummary from './OrderSummary';
-import { ScrollView } from 'react-native';
 
 const DAFTAR_MENU = [ 
   { id: '1', 
@@ -26,12 +25,12 @@ const DAFTAR_MENU = [
 const App = () => {
   const [totalPesanan, setTotalPesanan] = useState(0);
 
-  const tambahPesanan = (harga) => {
+  const tambahPesanan = () => {
     setTotalPesanan(total => total + 1);
   };
 
-  const kurangiPesanan = (harga) => {
-    setTotalPesanan(total => Math.max(0, total - 1))
+  const kurangiPesanan = () => {
+    setTotalPesanan(total => total - 1)
   }
 
   return (
@@ -40,10 +39,32 @@ const App = () => {
       <View style={styles.header}>
         <Text style={styles.textSapaan}>Hallo! Cat Lovers</Text>
         <Text style={styles.textWelcome}>Selamat Datang di Cat Cafe!</Text>
-        <Text style={styles.subText}>Yuk, pilih menu favoritmu hari ini!</Text>
+        <Text style={styles.subText}>Yuk, pilih menu kesukaanmu!</Text>
       </View>
 
-      <Text style={styles.labelMenu}>Our Menu</Text>
+       <View style={styles.banner}>
+          <Image
+            source={require('./assets/banner.jpg')}
+            style={styles.gambarBanner}
+            resizeMode="cover"
+          />
+
+          <View style={styles.lapisanBanner}>
+            <Text style={styles.promoLabel}>
+              SPECIAL PROMO
+            </Text>
+
+            <Text style={styles.promoJudul}>
+              Happy Paws, Happy Day!
+            </Text>
+
+            <Text style={styles.promoDeskripsi}>
+              Pesan 5 menu favoritmu dan dapatkan diskon 10%
+            </Text>
+          </View>
+        </View>
+
+      <Text style={styles.labelMenu}>Daftar Menu</Text>
 
       <View style={styles.daftarMenu}>
         {DAFTAR_MENU.map(item => (
@@ -57,9 +78,10 @@ const App = () => {
           />  
         ))}
       </View>
-
-      <OrderSummary totalCount={totalPesanan}/>
       </ScrollView>
+        
+        <OrderSummary totalCount={totalPesanan}/>
+
     </View>
   );
 }
@@ -93,17 +115,53 @@ const styles = StyleSheet.create({
     color: '#88838F',
     marginTop: 4,
   },
+ banner: {
+    height: 120,
+    marginHorizontal: 20,
+    marginBottom: 25,
+    borderRadius: 22,
+    overflow: 'hidden',
+  },
+  gambarBanner: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    opacity: 0.5,
+  },
+  lapisanBanner: {
+    flex: 1,
+    backgroundColor: '#DCCAFFCC',
+    padding: 18,
+    justifyContent: 'center',
+  },
+  promoLabel: {
+    fontSize: 14,
+    color: '#6C3FC5',
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  promoJudul: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#292333',
+  },
+  promoDeskripsi: {
+    fontSize: 14,
+    color: '#332e3a',
+    marginTop: 6,
+  },
   daftarMenu: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
+    paddingBottom: 6
   },
   labelMenu: {
     paddingHorizontal: 20,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    paddingTop: 10,
+    paddingTop: 2,
     paddingBottom: 8,
   }
 });

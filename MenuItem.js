@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import {View, Image, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native';
 
 const MenuItem = ({nama, harga, gambar, onTambahPesanan, onKurangiPesanan}) => {
     const [qty, setQty] = useState(0);
@@ -61,13 +60,13 @@ const styles = StyleSheet.create({
     },
     namaMenu: {
         marginTop: 8,
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#8868c9',
         paddingHorizontal: 8
     },
     harga: {
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 'bold',
         marginTop: 4,
         marginBottom: 4,
@@ -83,9 +82,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 6
     },
     tombolTambah: {
-        width: 28,
-        height: 28,
-        borderRadius: 14,
+        width: 32,
+        height: 32,
+        borderRadius: 16,
         backgroundColor: '#8868c9',
         alignItems: 'center',
         justifyContent: 'center'
@@ -97,9 +96,9 @@ const styles = StyleSheet.create({
         lineHeight: 24
     },
     tombolKurang: {
-        width: 28,
-        height: 28,
-        borderRadius: 14,
+        width: 32,
+        height: 32,
+        borderRadius: 16,
         backgroundColor: '#8868c9',
         alignItems: 'center',
         justifyContent: 'center'

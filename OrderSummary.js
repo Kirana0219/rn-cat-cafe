@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const OrderSummary = ({ totalCount }) => {
   const diskon = totalCount >= 5;
@@ -12,7 +7,7 @@ const OrderSummary = ({ totalCount }) => {
   return (
     <View style={styles.container}>
         <Text style={styles.judul}>Ringkasan Pesanan</Text>
-        <Text style={styles.label}>Jumlah Pesanan : {totalCount} item</Text>
+        <Text style={styles.totalMenu}>Jumlah Pesanan : {totalCount} item</Text>
 
         {diskon && (
             <Text style={styles.promoText}>
@@ -32,11 +27,11 @@ const OrderSummary = ({ totalCount }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: {    
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 20,
     paddingTop: 18,
-    paddingBottom: 12,
+    paddingBottom: 50,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
     borderTopWidth: 1,
@@ -48,15 +43,15 @@ const styles = StyleSheet.create({
     color: '#292333',
     marginBottom: 12,
   },
-  label: {
-    fontSize: 14,
+  totalMenu: {
+    fontSize: 15,
     color: '#77717E',
   },
   promoText: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '500',
-    color: '#27834A',
-    marginTop: 5,
+    color: '#2da85c',
+    marginTop: 12,
   },
   tombol: {
     backgroundColor: '#6C3FC5',
@@ -67,7 +62,7 @@ const styles = StyleSheet.create({
   },
   teksTombol: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

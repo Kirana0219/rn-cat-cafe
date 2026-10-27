@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import {View, Image, Text, Button } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import {View, Image, Text } from 'react-native';
 
-const MenuItem = ({nama, harga, gambar, onTambahPesanan}) => {
+const MenuItem = ({nama, harga, gambar, onTambahPesanan, onKurangiPesanan}) => {
     const [qty, setQty] = useState(0);
 
     const tambahMenu = () => {
-        setQty(qty + 1);
+        setQty(jumlah => jumlah + 1);
         onTambahPesanan();
+    }
+    const kurangiMenu = () => {
+        if(qty>0){
+            setQty(jumlah => jumlah - 1)
+            onKurangiPesanan();
+        }
     }
 
     return (
@@ -20,10 +26,19 @@ const MenuItem = ({nama, harga, gambar, onTambahPesanan}) => {
 
             <View>
                 <Text style={styles.namaMenu}>{nama}</Text>
-                <Text>Rp {harga.toLocaleString('id-ID')}</Text>
-                <Text>Jumlah Pesanan: {qty}</Text>
+                <Text style={styles.harga}>Rp {harga.toLocaleString('id-ID')}</Text>
+            </View>
 
-                <Button title="Tambah" onPress={tambahMenu} />
+            <View style={styles.kontrolPesanan}>
+                <TouchableOpacity style={styles.tombolKurang} onPress={kurangiMenu} activeOpacity={0.8}>
+                    <Text style={styles.textKurang}>-</Text>
+                </TouchableOpacity>
+
+                <Text style={styles.jumlahPesanan}>{qty}</Text>
+
+                <TouchableOpacity style={styles.tombolTambah} onPress={tambahMenu} activeOpacity={0.8}>
+                    <Text style={styles.textTambah}>+</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -35,20 +50,69 @@ const styles = StyleSheet.create({
         width: '48%',
         borderWidth: 1,
         borderColor: '#EAE4F4',
-        borderRadius: 16,
-        marginBottom: 14,
+        borderRadius: 14,
+        marginBottom: 12,
         overflow: 'hidden'
     },
     gambar: {
         width: '100%',
         height: 115,
-        backgroundColor: '#F5F0FF',
+        backgroundColor: '#F5F0FF'
     },
     namaMenu: {
         marginTop: 8,
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 'bold',
         color: '#8868c9',
+        paddingHorizontal: 8
+    },
+    harga: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginTop: 4,
+        marginBottom: 4,
+        paddingHorizontal: 8
+    },
+    kontrolPesanan: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 14,
+        marginTop: 12,
+        paddingHorizontal: 80
+    },
+    tombolTambah: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: '#8868c9',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textTambah: {
+        color: '#ffff',
+        fontSize: 20,
+        fontWeight: 'bold',
+        lineHeight: 24
+    },
+    tombolKurang: {
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: '#8868c9',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textKurang: {
+        color: '#ffff',
+        fontSize: 20,
+        fontWeight: 'bold',
+        lineHeight: 24
+    },
+    jumlahPesanan: {
+        fontSize: 20,
+        color: 'black',
+        fontWeight: 'bold'
     },
 })
 export default MenuItem;

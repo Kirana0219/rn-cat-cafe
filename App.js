@@ -28,6 +28,10 @@ const App = () => {
     setTotalPesanan(totalPesanan + harga);
   };
 
+  const kurangiPesanan = (harga) => {
+    setTotalPesanan(total => Math.max(0, total - 1))
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -46,6 +50,7 @@ const App = () => {
             harga={item.harga}
             gambar={item.gambar}
             onTambahPesanan={tambahPesanan}
+            onKurangiPesanan={kurangiPesanan}
           />  
         ))}
       </View>

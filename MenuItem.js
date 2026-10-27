@@ -10,7 +10,7 @@ const MenuItem = ({nama, harga, gambar, onTambahPesanan, onKurangiPesanan}) => {
         onTambahPesanan();
     }
     const kurangiMenu = () => {
-        if(qty>0){
+        if(qty > 0){
             setQty(jumlah => jumlah - 1)
             onKurangiPesanan();
         }
@@ -37,7 +37,7 @@ const MenuItem = ({nama, harga, gambar, onTambahPesanan, onKurangiPesanan}) => {
                 <Text style={styles.jumlahPesanan}>{qty}</Text>
 
                 <TouchableOpacity style={styles.tombolTambah} onPress={tambahMenu} activeOpacity={0.8}>
-                    <Text style={styles.textTambah}>+</Text>
+                     <Text style={styles.textTambah}>+</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
     kontrolPesanan: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
+        gap: 6,
         marginBottom: 14,
         marginTop: 12,
-        paddingHorizontal: 80
+        justifyContent: 'flex-end',
+        paddingHorizontal: 6
     },
     tombolTambah: {
         width: 28,
@@ -112,7 +113,8 @@ const styles = StyleSheet.create({
     jumlahPesanan: {
         fontSize: 20,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
 })
 export default MenuItem;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {StyleSheet, Text, View } from 'react-native';
 
 import MenuItem from './MenuItem';
+import OrderSummary from './OrderSummary';
+import { ScrollView } from 'react-native';
 
 const DAFTAR_MENU = [ 
   { id: '1', 
@@ -25,7 +27,7 @@ const App = () => {
   const [totalPesanan, setTotalPesanan] = useState(0);
 
   const tambahPesanan = (harga) => {
-    setTotalPesanan(totalPesanan + harga);
+    setTotalPesanan(total => total + 1);
   };
 
   const kurangiPesanan = (harga) => {
@@ -34,6 +36,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+      <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
       <View style={styles.header}>
         <Text style={styles.textSapaan}>Hallo! Cat Lovers</Text>
         <Text style={styles.textWelcome}>Selamat Datang di Cat Cafe!</Text>
@@ -54,6 +57,9 @@ const App = () => {
           />  
         ))}
       </View>
+
+      <OrderSummary totalCount={totalPesanan}/>
+      </ScrollView>
     </View>
   );
 }
@@ -63,6 +69,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffff',
     flex: 1,
     paddingTop: 30,
+  },
+  scrollContent:{
+    paddingBottom: 20,
   },
   header: {
     paddingHorizontal: 20,
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   textWelcome: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#292333',
   },

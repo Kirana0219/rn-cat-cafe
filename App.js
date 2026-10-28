@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute',
-    opacity: 0.5,
+    opacity: 0.6,
   },
   lapisanBanner: {
     flex: 1,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   promoLabel: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#6C3FC5',
     fontWeight: 'bold',
     marginBottom: 4,
